@@ -6,6 +6,8 @@ Use this repo as a template for the [Tezos Foundation](https://grants.tezos.foun
 
 **Funding request:** We are requesting **$5,000–$10,000** for **6 months of active GitHub support** (issues, PRs, dependency updates, and tutorial expansion). After the 6-month grant period we commit to 12 months of responsive maintenance and onboarding community co-maintainers.
 
+**Live demo:** [**tezos-from-zero-to-d-app.vercel.app**](https://tezos-from-zero-to-d-app.vercel.app/) — try the app in your browser (no clone required). Use **Demo wallet** to explore in under a minute.
+
 ---
 
 ## For reviewers and educators
@@ -33,7 +35,11 @@ UI matches the Zen Relay for Tezos style: dark theme, Tezos green accent, Outfit
 
 ---
 
-## Quick start (≈2 min)
+## Quick start
+
+**Try in the browser:** [tezos-from-zero-to-d-app.vercel.app](https://tezos-from-zero-to-d-app.vercel.app/) — no install. Click **Demo wallet** to start.
+
+**Run locally (≈2 min):**
 
 ```bash
 git clone https://github.com/panagot/Tezos-From-zero-to-dApp

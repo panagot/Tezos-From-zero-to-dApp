@@ -10,6 +10,7 @@ import { LearningOutcomesCard } from './components/LearningOutcomesCard';
 import { KeyTermsCard } from './components/KeyTermsCard';
 import { ArchitectureDiagram } from './components/ArchitectureDiagram';
 import { LearningPathCard } from './components/LearningPathCard';
+import { DashboardRightPanel } from './components/DashboardRightPanel';
 import { Tooltip } from './components/Tooltip';
 import { ForReviewersView } from './components/ForReviewersView';
 import { TutorialDetailView } from './components/TutorialDetailView';
@@ -219,7 +220,8 @@ export default function App() {
         ) : view === 'reviewers' ? (
           <ForReviewersView onBack={() => setView('dashboard')} styles={styles} />
         ) : (
-          <div className={styles.content}>
+          <div className={styles.dashboardLayout}>
+            <div className={styles.dashboardContent}>
             <header className={styles.hero}>
               <h2 className={styles.heroTitle}>Your launchpad to building on Tezos</h2>
               <p className={styles.heroSubtitle}>
@@ -272,6 +274,10 @@ export default function App() {
             <ContractCall onError={handleTransferError} onSuccess={(msg) => setFlashMessage({ message: msg })} />
             <OperationsList />
             <ResourcesCard />
+            </div>
+            <aside className={styles.dashboardRight} aria-label="Quick start reference">
+              <DashboardRightPanel styles={styles} />
+            </aside>
           </div>
         )}
         {error && (

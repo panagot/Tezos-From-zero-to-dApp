@@ -77,6 +77,11 @@ export function PracticePanel({ open, onClose, title, practiceWhere, initialCode
               {copied ? 'Copied' : 'Copy code'}
             </button>
           </section>
+          <section className={s.practiceTipSection}>
+            <p className={s.practiceTip}>
+              <strong>Tip:</strong> After copying, paste into your project and run the app to see it in action. Use the Dashboard cards to try the same flow without coding.
+            </p>
+          </section>
         </div>
       </div>
     </>

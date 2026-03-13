@@ -297,8 +297,365 @@
 }
 
 .content {
-  padding: 1.5rem 2rem 2rem;
-  max-width: 48rem;
+  padding: 1.5rem 1.25rem 2rem 1.25rem;
+  max-width: 52rem;
+  width: 100%;
+}
+
+/* Dashboard: two columns so right side has terminal + code */
+.dashboardLayout {
+  flex: 1;
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+}
+
+.dashboardContent {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  padding: 1.5rem 1.25rem 2rem 1.25rem;
+  max-width: 52rem;
+}
+
+.dashboardRight {
+  flex: 1;
+  min-width: 360px;
+  border-left: 1px solid var(--border);
+  background: var(--bg-elevated);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboardRightInner {
+  padding: 0;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.pathColumn {
+  flex: 1;
+  min-width: 0;
+  padding: 1rem 1.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.quickAccessStrip {
+  width: 140px;
+  flex-shrink: 0;
+  padding: 1rem 0.75rem 1.5rem;
+  border-left: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.quickAccessTitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+}
+
+.quickAccessLink {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--accent);
+  text-decoration: none;
+  padding: 0.35rem 0;
+}
+
+.quickAccessLink:hover {
+  text-decoration: underline;
+}
+
+.dashboardRightFooter {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+
+.dashboardRightFooterMeta {
+  opacity: 0.85;
+}
+
+.dashboardRightTitle {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.dashboardRightSection {
+  margin-bottom: 1.5rem;
+}
+
+.dashboardRightSectionTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.dashboardRightHint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0.5rem 0 0;
+  line-height: 1.45;
+}
+
+.dashboardRightList {
+  margin: 0;
+  padding-left: 1.15rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.dashboardRightList li {
+  margin-bottom: 0.4rem;
+}
+
+.dashboardRightList strong {
+  color: var(--text);
+}
+
+.dashboardRightLink {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.dashboardRightLink:hover {
+  text-decoration: underline;
+}
+
+/* Your path — fills right panel */
+.pathTitle {
+  margin: 0 0 0.35rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.pathIntro {
+  margin: 0 0 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.pathSteps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex: 1;
+  min-height: 0;
+}
+
+.pathStep {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.pathStepNum {
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(72, 187, 120, 0.15);
+  border-radius: 50%;
+  border: 1px solid rgba(72, 187, 120, 0.35);
+}
+
+.pathStepBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.pathStepTitle {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.pathStepText {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.pathStepText strong {
+  color: var(--text);
+}
+
+.pathStepHint {
+  margin: 0.4rem 0 0;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.pathTerminal {
+  margin-top: 0.6rem;
+  background: #1a1d21;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.pathTerminalPre {
+  margin: 0;
+  padding: 0.6rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: #a0aec0;
+  overflow-x: auto;
+  white-space: pre;
+  word-break: break-all;
+}
+
+.pathTerminalPre code {
+  background: none;
+}
+
+.pathLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-top: 0.6rem;
+}
+
+.pathLink {
+  color: var(--accent);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.pathLink:hover {
+  text-decoration: underline;
+}
+
+/* Terminal-style block */
+.terminalBlock {
+  background: #1a1d21;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.terminalHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  background: #25282c;
+  border-bottom: 1px solid var(--border);
+}
+
+.terminalDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4a4d52;
+}
+
+.terminalDot:nth-child(1) { background: #e74c3c; }
+.terminalDot:nth-child(2) { background: #f1c40f; }
+.terminalDot:nth-child(3) { background: #2ecc71; }
+
+.terminalLabel {
+  margin-left: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.terminalPre {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.terminalCode {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: #a0aec0;
+  white-space: pre;
+  word-break: break-all;
+}
+
+/* Code blocks inside dashboard right panel use full width */
+.dashboardRight .codeBlockWrap {
+  max-width: 100%;
+}
+
+.dashboardRight .codeBlock {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.dashboardRight .codeBlock code {
+  white-space: pre;
+  word-break: break-word;
+}
+
+@media (max-width: 1024px) {
+  .dashboardLayout {
+    flex-direction: column;
+  }
+
+  .dashboardRight {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    max-height: 40vh;
+  }
+
+  .dashboardRightInner {
+    flex-direction: column;
+  }
+
+  .quickAccessStrip {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+  }
+
+  .quickAccessTitle {
+    width: 100%;
+    margin-bottom: 0;
+  }
 }
 
 .pageTitle {
@@ -555,12 +912,158 @@
   opacity: 1;
 }
 
-/* Tutorial / steps */
+/* Tutorial: two-column layout (content + practice always visible) */
+.tutorialWithPractice {
+  flex: 1;
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+}
+
+.tutorialContentCol {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  padding: 1rem 1.25rem 2rem 1.25rem;
+  max-width: 52rem;
+}
+
+.practiceColumn {
+  width: 380px;
+  flex-shrink: 0;
+  border-left: 1px solid var(--border);
+  background: var(--bg-elevated);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.practiceColumnWithOutput {
+  width: 720px;
+}
+
+.practiceColumnInner {
+  display: flex;
+  flex-direction: row;
+  min-height: 100%;
+  padding: 0;
+}
+
+.practiceColumnLeft {
+  flex: 0 0 380px;
+  padding: 1rem 1.25rem 2rem;
+  border-right: 1px solid var(--border);
+  min-width: 0;
+}
+
+.practiceColumnRight {
+  flex: 1;
+  min-width: 0;
+  padding: 1rem 1.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.practiceColumnTitle {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.practiceColumnTextarea {
+  width: 100%;
+  min-height: 220px;
+  max-height: 320px;
+  padding: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  resize: vertical;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+}
+
+.practiceColumnTextarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.practiceColumnTextarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+/* Custom scrollbar for practice code area (WebKit: Chrome, Safari, Edge) */
+.practiceColumnTextarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.practiceColumnTextarea::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+}
+
+.practiceColumnTextarea::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+.practiceColumnTextarea::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.2);
+}
+
+@media (max-width: 1100px) {
+  .practiceColumn {
+    width: 380px;
+  }
+
+  .practiceColumnInner {
+    flex-direction: column;
+  }
+
+  .practiceColumnLeft {
+    flex: none;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .practiceColumnRight {
+    flex: none;
+  }
+
+  .practiceOutputSection {
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .tutorialWithPractice {
+    flex-direction: column;
+  }
+
+  .practiceColumn {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    max-height: 45vh;
+  }
+}
+
+/* Tutorial / steps (standalone, e.g. "content coming soon") */
 .instructions {
   flex: 1;
   overflow-y: auto;
-  padding: 1.5rem 2rem 2rem;
-  max-width: 42rem;
+  padding: 1rem 1.25rem 2rem;
+  max-width: 52rem;
+  width: 100%;
 }
 
 .instructionsBack {
@@ -674,16 +1177,20 @@
 
 .practiceDrawer {
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: min(420px, 100vw);
-  background: var(--bg);
-  border-left: 1px solid var(--border);
-  z-index: 101;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  width: min(440px, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  height: auto;
   display: flex;
   flex-direction: column;
-  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  z-index: 101;
+  overflow: hidden;
 }
 
 .practiceDrawerHeader {
@@ -716,9 +1223,10 @@
 }
 
 .practiceDrawerBody {
-  flex: 1;
+  flex: 1 1 auto;
   overflow-y: auto;
   padding: 1rem 1.25rem;
+  min-height: 0;
 }
 
 .practiceWhereSection {
@@ -778,13 +1286,15 @@
 
 .practiceTextarea {
   width: 100%;
-  min-height: 180px;
+  min-height: 200px;
+  max-height: 280px;
   padding: 0.75rem;
   font-family: var(--font-mono);
   font-size: 0.8rem;
   line-height: 1.5;
   background: var(--surface);
   border: 1px solid var(--border);
+  resize: vertical;
   border-radius: var(--radius);
   color: var(--text);
   resize: vertical;
@@ -793,6 +1303,80 @@
 .practiceTextarea:focus {
   outline: none;
   border-color: var(--accent);
+}
+
+.practiceTipSection {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.practiceTip {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.practiceTip strong {
+  color: var(--text);
+}
+
+/* Practice column right: "What this code does" output preview */
+.practiceOutputSection {
+  width: 100%;
+}
+
+.practiceOutputTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+  color: var(--accent);
+}
+
+.practiceOutputDesc {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 0 0 0.75rem;
+}
+
+.outputMockBox {
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.8rem;
+}
+
+.outputMockLabel {
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.outputMockRow {
+  margin-bottom: 0.25rem;
+  color: var(--text);
+}
+
+.outputMockKey {
+  color: var(--text-muted);
+  margin-right: 0.35rem;
+}
+
+.outputMockMuted {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+}
+
+.outputMockMono {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text);
+  word-break: break-all;
 }
 
 /* Practice block (below tutorial content) */
@@ -1392,6 +1976,11 @@
   }
 
   .practiceDrawer {
-    width: 100%;
+    width: calc(100vw - 1rem);
+    right: 0.5rem;
+    left: 0.5rem;
+    top: 0.5rem;
+    transform: none;
+    max-height: calc(100vh - 1rem);
   }
 }

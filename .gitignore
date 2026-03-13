@@ -9,6 +9,7 @@ dist
 GRANT-SUMMARY-FOR-AI.md
 GRANT-APPLICATION-IMPROVEMENTS.md
 TEZOS-TUTORIALS-COMPARISON.md
+LESSONS-FOR-AI-REVIEW.md
 
 # Test / local scripts (do not publish)
 *.test.local.*

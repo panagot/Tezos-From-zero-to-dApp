@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { CodeSnippet } from './CodeSnippet';
-import { PracticePanel } from './PracticePanel';
+import { PracticeColumn } from './PracticeColumn';
 import { getTutorialById } from '../tutorialsConfig';
 
 /** Per-lesson hint for "Where to practice" in the practice panel. */
@@ -16,8 +15,20 @@ const PRACTICE_WHERE = {
   'error-handling': 'Try rejecting the wallet connection, or reject a transfer in the wallet popup, to see the error messages in the UI.',
 };
 
+/** Per-lesson "what you'll see" — describes or mocks the output of the code they type. */
+const OUTPUT_PREVIEW = {
+  'connect-and-balance': { description: 'After connecting, the wallet popup closes and the app shows the active account and balance from the RPC.', mock: 'balance' },
+  'display-address-balance': { description: 'Components using useWallet() get address and balance. The sidebar and Balance card update when the user connects.', mock: 'balance' },
+  'send-transfer': { description: 'A transfer form sends XTZ. After confirmation, the UI shows the operation hash and a link to the explorer.', mock: 'transfer' },
+  'read-storage': { description: 'The app reads contract storage (e.g. an int). The result appears in the Read contract card without signing.', mock: 'storage' },
+  'call-entrypoint': { description: 'The wallet prompts to sign. After confirmation, the contract state updates and the UI reflects the new value.', mock: 'call' },
+  'op-hash-explorer': { description: 'Success message shows the operation hash and a "View in Explorer" link opening TzKT.', mock: 'opHash' },
+  'wallet-context': { description: 'One shared wallet instance. Any component can call useWallet() to get address, balance, connect, disconnect.', mock: 'balance' },
+  'env-networks': { description: 'The app uses the RPC and network from .env. Switching VITE_NETWORK changes explorer and API URLs.', mock: null },
+  'error-handling': { description: 'Errors (rejected connection, failed transfer) appear in the UI. User can dismiss and try again.', mock: null },
+};
+
 export function TutorialDetailView({ tutorialId, onBack, styles: s }) {
-  const [practiceOpen, setPracticeOpen] = useState(false);
   const tutorial = getTutorialById(tutorialId);
   const title = tutorial?.label ?? 'Tutorial';
   const level = tutorial?.level ?? '';
@@ -37,46 +48,33 @@ export function TutorialDetailView({ tutorialId, onBack, styles: s }) {
   const practiceSnippet = firstSectionWithCode?.code ?? '';
 
   return (
-    <div className={s.instructions}>
-      <button type="button" className={s.instructionsBack} onClick={onBack}>← Back to Dashboard</button>
-      <div className={s.tutorialMeta}>
-        {level && <span className={s.tutorialLevelBadge}>{level}</span>}
-        {tutorial?.minutes != null && <span className={s.tutorialDuration}>~{tutorial.minutes} min</span>}
+    <div className={s.tutorialWithPractice}>
+      <div className={s.tutorialContentCol}>
+        <button type="button" className={s.instructionsBack} onClick={onBack}>← Back to Dashboard</button>
+        <div className={s.tutorialMeta}>
+          {level && <span className={s.tutorialLevelBadge}>{level}</span>}
+          {tutorial?.minutes != null && <span className={s.tutorialDuration}>~{tutorial.minutes} min</span>}
+        </div>
+        <h2 className={s.instructionsTitle}>{title}</h2>
+        <p className={s.instructionsIntro}>{content.intro}</p>
+        <div className={s.instructionsBody}>
+          {content.sections?.map((section, i) => (
+            <section key={i} className={s.instructionsSection}>
+              <h3>{section.title}</h3>
+              {typeof section.body === 'function' ? section.body(s) : section.body}
+              {section.code && <CodeSnippet code={section.code} title={section.codeTitle} />}
+            </section>
+          ))}
+        </div>
       </div>
-      <h2 className={s.instructionsTitle}>{title}</h2>
-      <p className={s.instructionsIntro}>{content.intro}</p>
-      <div className={s.instructionsBody}>
-        {content.sections?.map((section, i) => (
-          <section key={i} className={s.instructionsSection}>
-            <h3>{section.title}</h3>
-            {typeof section.body === 'function' ? section.body(s) : section.body}
-            {section.code && <CodeSnippet code={section.code} title={section.codeTitle} />}
-          </section>
-        ))}
-      </div>
-      <div className={s.practiceBlock}>
-        <h3 className={s.practiceBlockTitle}>Where to practice</h3>
-        <p className={s.practiceBlockText}>
-          <strong>In this app:</strong> Go to the Dashboard and use the cards mentioned in the lesson (Demo wallet, Send XTZ, Read contract storage, etc.). No setup needed.
-          <br />
-          <strong>Locally:</strong> Clone this repo, run <code>npm run dev</code>, then edit files in <code>src/</code> and see changes live.
-        </p>
-        <button
-          type="button"
-          className={s.practiceOpenBtn}
-          onClick={() => setPracticeOpen(true)}
-        >
-          Open practice panel
-        </button>
-      </div>
-      <PracticePanel
-        open={practiceOpen}
-        onClose={() => setPracticeOpen(false)}
-        title={title}
-        practiceWhere={PRACTICE_WHERE[tutorialId]}
-        initialCode={practiceSnippet}
-        styles={s}
-      />
+      <aside className={`${s.practiceColumn} ${OUTPUT_PREVIEW[tutorialId] ? s.practiceColumnWithOutput : ''}`} aria-label="Practice code">
+        <PracticeColumn
+          practiceWhere={PRACTICE_WHERE[tutorialId]}
+          initialCode={practiceSnippet}
+          outputPreview={OUTPUT_PREVIEW[tutorialId]}
+          styles={s}
+        />
+      </aside>
     </div>
   );
 }
