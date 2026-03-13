@@ -1,0 +1,21 @@
+node_modules
+dist
+.env
+.env.local
+*.log
+.DS_Store
+
+# Internal / grant-prep (not for public repo or reviewers)
+GRANT-SUMMARY-FOR-AI.md
+GRANT-APPLICATION-IMPROVEMENTS.md
+TEZOS-TUTORIALS-COMPARISON.md
+
+# Test / local scripts (do not publish)
+*.test.local.*
+*.test.local
+scripts/test-*
+scripts/*.local.*
+test-*.js
+test-*.mjs
+*.spec.local.*
+.run/
